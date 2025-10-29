@@ -1,0 +1,13 @@
+# M3TRIC Project Website Configuration
+
+# Site settings
+title: M3TRIC
+description: Soluciones tecnológicas basadas en monitoreo multiescala para la toma de decisiones informadas
+author: Exneyder A. Montoya-Araque
+
+# Build settings
+markdown: kramdown
+theme: minima
+
+# GitHub Pages settings
+repository: eamontoyaa/m3tric.github.io

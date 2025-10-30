@@ -1,16 +1,6 @@
 ---
 layout: splash
----
 
-# M3TRIC
-
-Integramos sensores en sitio, drones y satélite para que entidades públicas y empresas tomen decisiones con datos consistentes, no con pedacitos de información.
-
-👉 [Cómo lo hacemos](./solucion.md)  
-👉 [Casos y experiencias](./casos.md)  
-👉 [Equipo de la Universidad EAFIT](./equipo.md)
-
-> Spin-off en alistamiento dentro de la Universidad EAFIT.
 
 feature_row:
   - image_path: /images/nivel_1.png
@@ -27,3 +17,17 @@ feature_row:
   - image_path: /images/nivel_3.jpg
     title: "Placeholder 3"
     excerpt: "This is some sample content that goes here with **Markdown** formatting."
+
+---
+
+# M3TRIC
+
+Integramos sensores en sitio, drones y satélite para que entidades públicas y empresas tomen decisiones con datos consistentes, no con pedacitos de información.
+
+👉 [Cómo lo hacemos](./solucion.md)  
+👉 [Casos y experiencias](./casos.md)  
+👉 [Equipo de la Universidad EAFIT](./equipo.md)
+
+> Spin-off en alistamiento dentro de la Universidad EAFIT.
+
+{% include feature_row %}

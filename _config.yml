@@ -3,7 +3,7 @@ description: "Sistema de monitoreo multiescala y analítica de datos para aplica
 logo: /images/m3tric_logo.png
 
 # remote_theme: pages-themes/minimal@v0.2.0
-remote_theme: "mmistakes/minimal-mistakes"
+theme: minimal-mistakes-jekyll
 
 show_downloads: false
 

@@ -1,5 +1,7 @@
 ---
 title: Equipo
+layout: single
+classes: wide
 ---
 
 # Equipo M3TRIC

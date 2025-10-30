@@ -1,5 +1,7 @@
 ---
 title: Casos y experiencias
+layout: single
+classes: wide
 ---
 
 # Casos y experiencias

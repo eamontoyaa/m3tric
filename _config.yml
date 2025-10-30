@@ -1,10 +1,17 @@
-title: M3tric
-description: Bienvenido!
+title: "M3TRIC"
+description: "Monitoreo multiescala para aplicaciones agrogeoambientales"
 logo: /images/m3tric_logo.png
-show_downloads: false
-theme: jekyll-theme-minimal
+
 remote_theme: pages-themes/minimal@v0.2.0
+show_downloads: false
+
+header_pages:
+  - solucion.md
+  - casos.md
+  - equipo.md
+
+plugins:
+  - jekyll-remote-theme
+
 bibliography: /attached/publications.bib
 link-citations: true
-plugins:
-- jekyll-remote-theme

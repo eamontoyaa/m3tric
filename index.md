@@ -1,17 +1,13 @@
 ---
-layout: default
+title: M3TRIC
 ---
 
-# M3tric
+# M3TRIC
+**Sistema de monitoreo multiescala y analítica de datos para aplicaciones agrogeoambientales.**  
+Integramos sensores en sitio, drones y satélite para que entidades públicas y empresas tomen decisiones con datos consistentes, no con pedacitos de información.
 
-Sistema de monitoreo multiescala para aplicaciones agrogeoambientales.
+👉 [Cómo lo hacemos](./solucion.md)  
+👉 [Casos y experiencias](./casos.md)  
+👉 [Equipo de la Universidad EAFIT](./equipo.md)
 
-## 📝 Proyectos
-
-[Aquí](./proyectos.html) puedes ver algunos de los proyectos que hemos desarrollado.
-
-## 📫 Contacto
-
-Puedes enviarnos un correo a cualquiera de estas direcciones:
-
-<!-- - [eamontoyaa@eafit.edu.co](mailto:eamontoyaa@eafit.edu.co)
+> Spin-off en alistamiento dentro de la Universidad EAFIT.

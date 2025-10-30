@@ -3,7 +3,7 @@ title: M3TRIC
 ---
 
 # M3TRIC
-**Sistema de monitoreo multiescala y analítica de datos para aplicaciones agrogeoambientales.**  
+
 Integramos sensores en sitio, drones y satélite para que entidades públicas y empresas tomen decisiones con datos consistentes, no con pedacitos de información.
 
 👉 [Cómo lo hacemos](./solucion.md)  

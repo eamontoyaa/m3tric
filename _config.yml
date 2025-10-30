@@ -1,8 +1,10 @@
 title: "M3TRIC"
-description: "Monitoreo multiescala para aplicaciones agrogeoambientales"
+description: "Sistema de monitoreo multiescala y analítica de datos para aplicaciones agrogeoambientales"
 logo: /images/m3tric_logo.png
 
-remote_theme: pages-themes/minimal@v0.2.0
+# remote_theme: pages-themes/minimal@v0.2.0
+remote_theme: "mmistakes/minimal-mistakes@4.27.3"
+
 show_downloads: false
 
 header_pages:

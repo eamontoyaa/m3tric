@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="{{ language }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page_title }} · {{ site_name }}</title>
+  <meta name="description" content="{{ page_description }}">
+  <meta name="author" content="{{ author }}">
+  <meta property="og:title" content="{{ page_title }} · {{ site_name }}">
+  <meta property="og:description" content="{{ page_description }}">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="{{ root }}assets/img/logo-m3tric-3.png">
+  <link rel="stylesheet" href="{{ root }}assets/css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="{{ root }}index.html" aria-label="Ir al inicio de M3TRIC">
+        <img class="brand-logo" src="{{ root }}assets/img/logo-m3tric.png" alt="M3TRIC">
+        <span class="brand-text">M3TRIC</span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" data-nav-toggle>
+        <span aria-hidden="true"></span>
+      </button>
+
+      <nav class="site-nav" aria-label="Navegación principal" data-site-nav>
+        {{ nav_html }}
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <div class="page-shell">
+      {{ content }}
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <img class="footer-logo" src="{{ root }}assets/img/logo-m3tric.png" alt="M3TRIC">
+        <p><strong>{{ site_name }}</strong> · {{ tagline }}</p>
+        <p>Equipo M3TRIC · Universidad EAFIT</p>
+      </div>
+      <div class="footer-links">
+        <!-- <a href="{{ root }}ecosistema.html">Ecosistema</a>
+        <a href="{{ root }}productos/decision-system.html">Decision System</a> -->
+        <a href="{{ root }}contacto.html">Contacto</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="{{ root }}assets/js/main.js"></script>
+</body>
+</html>

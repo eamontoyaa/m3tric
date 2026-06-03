@@ -1,0 +1,22 @@
+[
+  {"title": "Inicio", "source": "index.md"},
+  {
+    "title": "Productos",
+    "children": [
+      {"title": "Monitoreo multiescala", "source": "productos/monitoreo-multiescala.md"},
+      {"title": "Capacidades IoT", "source": "productos/capacidades-iot.md"},
+      {"title": "Visualización y alertas", "source": "productos/visualizacion-alertas.md"},
+      {"title": "Modelación geoespacial", "source": "productos/modelacion-geoespacial.md"}
+    ]
+  },
+  {
+    "title": "Casos de uso",
+    "children": [
+      {"title": "Infraestructura vial", "source": "casos-uso/infraestructura-vial.md"},
+      {"title": "Movimientos en masa", "source": "casos-uso/movimientos-en-masa.md"},
+      {"title": "Activos críticos", "source": "casos-uso/activos-criticos.md"},
+      {"title": "Territorios y planificación", "source": "casos-uso/territorios-planificacion.md"}
+    ]
+  },
+  {"title": "Contacto", "source": "contacto.md"}
+]

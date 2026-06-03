@@ -1,0 +1,2 @@
+# Este sitio no requiere dependencias de Python para construirse.
+# El generador usa únicamente la librería estándar de Python.

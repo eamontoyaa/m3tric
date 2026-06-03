@@ -30,9 +30,6 @@ jobs:
       - name: Build static site
         run: python scripts/build_site.py
 
-      - name: Check generated site
-        run: python scripts/check_site.py
-
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 

@@ -8,8 +8,11 @@ from __future__ import annotations
 
 import html
 import json
+import os
 import re
 import shutil
+import stat
+import time
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable, Any
@@ -273,6 +276,75 @@ def render_nav(nav_items: list[dict[str, Any]], current_source: str, root_url: s
     return "\n".join(chunks)
 
 
+
+def render_product_pillar_bar(current_source: str, root_url: str) -> str:
+    """Render the fixed product ecosystem navigator for product pages."""
+    products = [
+        {
+            "title": "Monitoreo multiescala",
+            "tag": "",#"M1 · M2 · M3",
+            "href": "productos/monitoreo-multiescala.html",
+            "class": "monitoring",
+            "description": "Monitoreo in-situ, remoto y satelital",
+            "subitems": [
+                ("M1", "", "productos/monitoreo-multiescala.html#m1-microescala"),
+                ("M2", "", "productos/monitoreo-multiescala.html#m2-mesoescala"),
+                ("M3", "", "productos/monitoreo-multiescala.html#m3-macroescala"),
+            ],
+        },
+        {
+            "title": "Capacidades IoT",
+            "tag": "",#"Conectividad",
+            "href": "productos/capacidades-iot.html",
+            "class": "iot",
+            "description": "LoRa, brokers y APIs",
+            "subitems": [],
+        },
+        {
+            "title": "Visualización, alertas y reportes",
+            "tag": "",#"Dashboards · Reportes",
+            "href": "productos/visualizacion-alertas.html",
+            "class": "visualization",
+            "description": "Tableros, alertas y reportes automáticos",
+            "subitems": [],
+        },
+        {
+            "title": "Modelación e información espacial",
+            "tag": "",#"Análisis geoespacial",
+            "href": "productos/modelacion-geoespacial.html",
+            "class": "modeling",
+            "description": "Geoestadística y gemelos digitales",
+            "subitems": [],
+        },
+    ]
+
+    chunks = [
+        '<nav class="product-ecosystem-nav" aria-label="M3TRIC decision system">',
+        '<div class="product-ecosystem-inner">',
+        '<div class="product-ecosystem-label">M3TRIC Decision System</div>',
+        '<div class="product-ecosystem-grid">',
+    ]
+    for product in products:
+        href = root_url + product["href"]
+        active = " active" if product["href"].replace(".html", ".md") == current_source else ""
+        chunks.append(f'<section class="product-ecosystem-card {product["class"]}{active}">')
+        chunks.append(f'<a class="product-ecosystem-main" href="{html.escape(href, quote=True)}">')
+        chunks.append(f'<span class="product-ecosystem-tag">{html.escape(product["tag"])}</span>')
+        chunks.append(f'<strong>{html.escape(product["title"])}</strong>')
+        chunks.append(f'<small>{html.escape(product["description"])}</small>')
+        chunks.append('</a>')
+        if product["subitems"]:
+            chunks.append('<div class="product-ecosystem-scales" aria-label="Escalas de monitoreo multiescala">')
+            for code, label, subhref in product["subitems"]:
+                chunks.append(
+                    f'<a href="{html.escape(root_url + subhref, quote=True)}">'
+                    f'<b>{html.escape(code)}</b><span>{html.escape(label)}</span></a>'
+                )
+            chunks.append('</div>')
+        chunks.append('</section>')
+    chunks.append('</div></div></nav>')
+    return "\n".join(chunks)
+
 def build_page(source: str, nav_items: list[dict[str, Any]], site_config: dict[str, str], template: str) -> Page:
     source_path = CONTENT_DIR / source
     if not source_path.exists():
@@ -289,7 +361,11 @@ def build_page(source: str, nav_items: list[dict[str, Any]], site_config: dict[s
     description = meta.get("description") or site_config.get("description", "")
     wide = meta.get("wide", "false").lower() in {"true", "yes", "1"}
     article_class = "content wide" if wide else "content"
-    content = f'<article class="{article_class}">\n{body_html}\n</article>'
+    article_html = f'<article class="{article_class}">\n{body_html}\n</article>'
+    if source.startswith("productos/"):
+        content = render_product_pillar_bar(source, root_url) + "\n" + article_html
+    else:
+        content = article_html
 
     replacements = {
         "{{ language }}": site_config.get("language", "es"),
@@ -330,17 +406,47 @@ def write_page(page: Page) -> None:
     output_path.write_text(page.content_html, encoding="utf-8")
 
 
+
+def remove_tree(path: Path) -> None:
+    """Remove a directory, with retries for Windows/OneDrive file locks."""
+    def onerror(func, target, exc_info):
+        try:
+            os.chmod(target, stat.S_IWRITE)
+            func(target)
+        except PermissionError:
+            time.sleep(0.5)
+            os.chmod(target, stat.S_IWRITE)
+            func(target)
+
+    if path.exists():
+        shutil.rmtree(path, onerror=onerror)
+
+
+def all_content_pages(nav_items: list[dict[str, Any]]) -> list[dict[str, str]]:
+    """Build pages from navigation plus every Markdown file under content/.
+
+    This keeps the visible menu simple while still generating pages that may be
+    linked from Markdown content, such as ecosistema, escalas, or decision-system.
+    """
+    pages = flatten_nav(nav_items)
+    seen = {item["source"] for item in pages}
+    for path in sorted(CONTENT_DIR.rglob("*.md")):
+        source = path.relative_to(CONTENT_DIR).as_posix()
+        if source not in seen:
+            pages.append({"title": path.stem.replace("-", " ").title(), "source": source})
+            seen.add(source)
+    return pages
+
 def main() -> None:
     nav_items = load_json(NAV_PATH)
     site_config = load_json(SITE_CONFIG_PATH)
     template = TEMPLATE_PATH.read_text(encoding="utf-8")
 
-    if OUTPUT_DIR.exists():
-        shutil.rmtree(OUTPUT_DIR)
+    remove_tree(OUTPUT_DIR)
     OUTPUT_DIR.mkdir(parents=True)
     copy_assets()
 
-    pages = flatten_nav(nav_items)
+    pages = all_content_pages(nav_items)
     seen_sources = set()
     for item in pages:
         source = item["source"]

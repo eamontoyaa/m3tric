@@ -573,34 +573,38 @@ main {
 }
 
 .cta-band {
-  border-radius: 36px;
-  padding: clamp(2rem, 5vw, 4rem);
-  color: var(--m3tric-white);
-  background:
-    radial-gradient(circle at top right, rgba(116, 198, 157, 0.46), transparent 35%),
-    linear-gradient(135deg, var(--m3tric-green-dark), var(--m3tric-green-medium));
-  box-shadow: var(--shadow-soft);
+  background: linear-gradient(45deg, #B7E3C7 0%, #74C69D 55%, #74C69D 100%);
+  color: #ffffff;
+  border-radius: 2rem;
+  padding: 4rem;
 }
 
 .cta-band h2 {
-  margin: 0 0 0.8rem;
-  max-width: 830px;
-  color: var(--m3tric-white);
-  font-size: clamp(2rem, 5vw, 4.5rem);
-  line-height: 0.98;
-  letter-spacing: -0.045em;
+  color: #ffffff;
+  max-width: 12ch;
+  line-height: 0.95;
+  margin-bottom: 1.5rem;
 }
 
 .cta-band p {
-  max-width: 780px;
   color: rgba(255, 255, 255, 0.88);
-  font-size: 1.12rem;
+  max-width: 70ch;
+  font-size: 1.05rem;
+  line-height: 1.7;
 }
 
-.cta-band .button {
-  background: var(--m3tric-white);
-  color: var(--m3tric-green-dark);
-  box-shadow: none;
+.cta-band .hero-actions {
+  margin-top: 2rem;
+}
+
+.cta-band .button.ghost {
+  background: #b7e3c7;
+  color: #004124;
+  border: none;
+}
+
+.cta-band .button.ghost:hover {
+  background: #d7f1e0;
 }
 
 .content {
@@ -891,4 +895,242 @@ main {
   .footer-inner {
     grid-template-columns: 1fr;
   }
+}
+
+/* Fixed product ecosystem navigator shown only on product pages */
+.product-ecosystem-nav {
+  position: fixed;
+  top: 72px;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  padding: 0.48rem 1rem 0.58rem;
+  background: rgba(230, 246, 236, 0.92);
+  border-bottom: 1px solid rgba(0, 65, 36, 0.10);
+  box-shadow: 0 18px 42px rgba(0, 65, 36, 0.10);
+  backdrop-filter: blur(18px);
+}
+
+.product-ecosystem-inner {
+  width: min(var(--content-width), calc(100% - 2rem));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 0.65rem;
+  align-items: stretch;
+}
+
+.product-ecosystem-label {
+  display: grid;
+  place-items: center;
+  min-height: 70px;
+  padding: 0.55rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.56);
+  color: rgba(0, 65, 36, 0.74);
+  font-size: 0.68rem;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  line-height: 1.12;
+  /* text-transform: uppercase; */
+  text-align: center;
+}
+
+.product-ecosystem-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr 1.08fr 1.08fr;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.product-ecosystem-card {
+  min-width: 0;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.76);
+  border: 1px solid rgba(0, 65, 36, 0.08);
+  overflow: hidden;
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.product-ecosystem-card:hover,
+.product-ecosystem-card.active {
+  transform: translateY(-1px);
+  border-color: rgba(116, 198, 157, 0.85);
+  box-shadow: 0 12px 28px rgba(0, 65, 36, 0.12);
+}
+
+.product-ecosystem-main {
+  display: grid;
+  gap: 0.12rem;
+  padding: 0.55rem 0.7rem 0.48rem;
+  color: var(--m3tric-green-dark);
+  text-decoration: none;
+}
+
+.product-ecosystem-main:hover {
+  text-decoration: none;
+}
+
+.product-ecosystem-tag {
+  width: max-content;
+  max-width: 100%;
+  padding: 0.16rem 0.45rem;
+  border-radius: 999px;
+  background: rgba(183, 227, 199, 0.75);
+  color: var(--m3tric-green-dark);
+  font-size: 0.64rem;
+  font-weight: 950;
+  line-height: 1.05;
+  white-space: nowrap;
+}
+
+.product-ecosystem-main strong {
+  display: block;
+  color: var(--m3tric-green-dark);
+  font-size: clamp(0.86rem, 1.05vw, 1.02rem);
+  line-height: 1.05;
+}
+
+.product-ecosystem-main small {
+  display: block;
+  color: rgba(0, 65, 36, 0.70);
+  font-size: 0.68rem;
+  font-weight: 750;
+  line-height: 1.12;
+}
+
+.product-ecosystem-card.iot .product-ecosystem-tag {
+  background: rgba(255, 209, 102, 0.50);
+}
+
+.product-ecosystem-card.visualization .product-ecosystem-tag {
+  background: rgba(247, 127, 0, 0.16);
+}
+
+.product-ecosystem-card.modeling .product-ecosystem-tag {
+  background: rgba(44, 105, 79, 0.16);
+}
+
+.product-ecosystem-scales {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.28rem;
+  padding: 0 0.52rem 0.52rem;
+}
+
+.product-ecosystem-scales a {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.22rem;
+  padding: 0.32rem 0.22rem;
+  border-radius: 999px;
+  background: rgba(183, 227, 199, 0.42);
+  color: var(--m3tric-green-dark);
+  text-align: center;
+  text-decoration: none;
+}
+
+.product-ecosystem-scales a:hover {
+  background: var(--m3tric-green-light);
+  color: var(--m3tric-white);
+  text-decoration: none;
+}
+
+.product-ecosystem-scales b {
+  font-size: 0.76rem;
+  line-height: 1;
+}
+
+.product-ecosystem-scales span {
+  font-size: 0.58rem;
+  font-weight: 850;
+  line-height: 1;
+}
+
+/* Add space so product content is not hidden below the fixed ecosystem nav. */
+.product-ecosystem-nav + .content {
+  margin-top: 8.2rem;
+}
+
+.product-ecosystem-nav + .content h1[id] {
+  scroll-margin-top: 190px;
+}
+
+.content h2[id],
+.content h3[id] {
+  scroll-margin-top: 190px;
+}
+
+@media (max-width: 1120px) {
+  .product-ecosystem-nav {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+  }
+
+  .product-ecosystem-inner {
+    width: calc(100% - 1rem);
+    min-width: 980px;
+  }
+}
+
+@media (max-width: 900px) {
+  .product-ecosystem-nav {
+    top: 72px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .product-ecosystem-inner {
+    min-width: 900px;
+    grid-template-columns: 100px minmax(0, 1fr);
+  }
+
+  .product-ecosystem-label {
+    min-height: 64px;
+  }
+
+  .product-ecosystem-main strong {
+    font-size: 0.88rem;
+  }
+
+  .product-ecosystem-nav + .content {
+    margin-top: 7.8rem;
+  }
+}
+.scale-product-section {
+  scroll-margin-top: 170px;
+  margin-top: 4rem;
+}
+
+.scale-product-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: 2rem;
+  align-items: start;
+  margin-top: 1.5rem;
+}
+
+.scale-product-grid > div {
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(116, 198, 157, 0.35);
+  border-radius: 1.4rem;
+  padding: 1.4rem;
+  box-shadow: 0 18px 45px rgba(0, 65, 36, 0.08);
+}
+
+.scale-product-grid h3 {
+  margin-top: 0;
+}
+
+@media (max-width: 850px) {
+  .scale-product-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.product-ecosystem-tag {
+  display: none !important;
 }
